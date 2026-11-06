@@ -1,61 +1,162 @@
-# Docker 웹서버 프로젝트
+# E1-workroom 미션
 
-## 📌 프로젝트 개요
-Windows WSL2 환경에서 Docker를 이용해 nginx 웹서버를 구축하고, 한글을 지원하는 웹사이트를 배포했습니다.
+## 📋 프로젝트 개요
+Docker를 이용한 Nginx 웹서버 구축 및 배포
 
-## 🛠️ 사용 기술
-- **OS**: Windows WSL2 + Ubuntu 22.04.5 LTS
-- **컨테이너**: Docker
-- **웹서버**: nginx
-- **언어**: HTML5
+## 🛠️ 개발환경
 
-## 📂 프로젝트 구조
+### 사무실 PC
+- OS: Windows 11
+- WSL2: Ubuntu 22.04.5 LTS
+- Docker: 29.9.2
+- Git: 설정 완료
+- 경로: /home/binary67/projects/mywebsite
+
+### 집 PC
+- OS: Windows 11
+- WSL2: Ubuntu 22.04
+- Docker: 설치 완료
+- Git: 설정 완료
+
+## 📁 프로젝트 구조
 mywebsite/
-├── Dockerfile # Docker 이미지 설정
-├── index.html # 웹사이트 메인 페이지
-└── README.md # 이 파일
+├── Dockerfile # Nginx 웹서버 설정
+├── index.html # 웹페이지 (한글 지원)
+├── README.md # 프로젝트 설명
+└── .gitignore # Git 무시 파일
 
 
-## 🚀 설치 및 실행 방법
+## 🔐 파일 권한
 
-### 1. Docker 이미지 빌드
+### 권한 설정 기준
+- **디렉토리**: 755 (rwxr-xr-x)
+  - 소유자: 읽기, 쓰기, 실행
+  - 그룹: 읽기, 실행
+  - 기타: 읽기, 실행
+
+- **파일**: 644 (rw-r--r--)
+  - 소유자: 읽기, 쓰기
+  - 그룹: 읽기
+  - 기타: 읽기
+
+### 권한 설정 명령어
 ```bash
-docker build -t mywebsite:1.0 .
+# 디렉토리 권한 설정
+chmod 755 /home/binary67/projects/mywebsite
 
-docker run -d -p 80:80 --name mywebsite-container mywebsite:1.0
+# 파일 권한 설정
+find /home/binary67/projects/mywebsite -type f -exec chmod 644 {} \;
 
-📋 진행 과정
-✅ 완료된 작업
-WSL2 + Ubuntu 22.04.5 LTS 설치
-Docker 엔진 설치 및 설정
-hello-world 컨테이너 테스트
-HTML 파일 작성 (한글 지원)
-Dockerfile 작성 (nginx + UTF-8 인코딩)
-Docker 이미지 빌드 성공
-웹서버 실행 및 한글 표시 확인
+📍 경로 개념
+절대 경로
+루트(/)에서 시작하는 경로
+예: /home/binary67/projects/mywebsite/index.html
+어디서든 같은 경로를 가리킴
+상대 경로
+현재 위치에서 시작하는 경로
+예: ./index.html, ../README.md
+현재 위치에 따라 달라짐
+경로 확인 명령어
 
-FROM ubuntu:26.04
-RUN apt-get update && apt-get install -y nginx
-COPY index.html /var/www/html/
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# 현재 위치 확인
+pwd
 
-📝 HTML 파일 특징
-UTF-8 인코딩으로 한글 완벽 지원
-DOCTYPE HTML5 선언
-반응형 웹디자인 기초 구조
-💡 학습 포인트
-Docker 기본 개념: 이미지, 컨테이너, 레이어
-WSL2 활용: Windows에서 Linux 환경 구축
-웹서버 배포: nginx를 이용한 정적 웹사이트 호스팅
-문자 인코딩: UTF-8을 통한 다국어 지원
-🎯 향후 계획
-CSS/JavaScript 추가
-데이터베이스 연동
-Docker Compose로 다중 서비스 관리
-CI/CD 파이프라인 구축
-📧 작성자
-binary67
+# 절대 경로로 변환
+realpath ./index.html
 
-📅 작성일
-2026년 11월 5일
+# 파일 접근 (절대 경로)
+cat /home/binary67/projects/mywebsite/index.html
+
+# 파일 접근 (상대 경로)
+cat ./index.html
+
+📝 터미널 로그 기록
+명령어 기록 확인
+
+# 모든 기록 보기
+history
+
+# 최근 10개 보기
+history 10
+
+# 특정 명령어 검색
+history | grep docker
+history | grep git
+
+이전 명령어 다시 실행
+
+# 마지막 명령어 실행
+!!
+
+# 특정 번호 명령어 실행
+!25
+
+# 특정 문자로 시작하는 명령어 실행
+!docker
+!git
+
+# 역방향 검색
+Ctrl + R
+
+로그 파일 위치
+~/.bash_history
+
+🐳 Docker 명령어
+이미지 빌드
+
+컨테이너 실행
+docker run -p 8080:80 mywebsite
+
+실행 중인 컨테이너 확인
+docker ps
+
+컨테이너 중지
+docker stop container_id
+
+📤 Git 명령어
+상태 확인
+git status
+
+파일 추가
+git add .
+
+커밋
+git commit -m "commit message"
+
+푸시
+git push origin main
+
+풀
+git pull origin main
+
+📚 학습 내용
+완료한 항목
+✅ WSL2 + Ubuntu 설치
+✅ Docker 설치 및 설정
+✅ Nginx 웹서버 Dockerfile 작성
+✅ HTML 파일 작성 (한글 지원)
+✅ Docker 이미지 빌드 및 컨테이너 실행
+✅ GitHub 저장소 생성 및 동기화
+✅ VS Code 설정
+✅ Git 사용자 정보 설정
+✅ SSH 키 생성 및 설정
+✅ 절대 경로 vs 상대 경로 학습
+✅ 파일 권한 (r/w/x) 학습
+✅ 권한 숫자 표시 (755, 644) 학습
+✅ 터미널 로그 기록 학습
+진행 중인 항목
+🔄 README.md 작성
+🔄 파일 권한 설정 및 확인
+🎯 다음 단계
+README.md 작성 완료
+파일 권한 설정 확인
+Git 커밋 및 푸시
+집 PC에서 동기화
+📞 참고사항
+모든 명령어는 WSL2 Ubuntu 터미널에서 실행
+Docker 이미지 이름: mywebsite
+포트 매핑: 8080:80
+GitHub 저장소: E1-workroom (또는 mywebsite)
+프로젝트 경로: /home/binary67/projects/mywebsite
+
+작성일 : 2026년 11월 06일
