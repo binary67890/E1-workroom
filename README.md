@@ -76,13 +76,18 @@ cat ./index.html
 # 모든 기록 보기
 history
 
-# 최근 10개 보기
-history 10
+# 최근 20개 보기
+history 20
 
 # 특정 명령어 검색
 history | grep docker
 history | grep git
 
+# nano 관련 명령어
+history | grep nano
+
+# git 관련 명령어
+history | grep git
 이전 명령어 다시 실행
 
 # 마지막 명령어 실행
@@ -160,3 +165,4 @@ GitHub 저장소: E1-workroom (또는 mywebsite)
 프로젝트 경로: /home/binary67/projects/mywebsite
 
 작성일 : 2026년 11월 06일
+
