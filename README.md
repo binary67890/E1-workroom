@@ -3,6 +3,22 @@
 ## 📋 프로젝트 개요
 Docker를 이용한 Nginx 웹서버 구축 및 배포
 
+## 🚀 빠른 시작
+# 1. 저장소 클론
+git clone https://github.com/binary67890/E1-workroom.git
+
+# 2. 폴더 이동
+cd E1-workroom
+
+# 3. Docker 이미지 빌드
+docker build -t mywebsite .
+
+# 4. 컨테이너 실행
+docker run -p 8080:80 mywebsite
+
+# 5. 브라우저에서 확인
+http://localhost:8080
+
 ## 🛠️ 개발환경
 
 ### 사무실 PC
@@ -17,6 +33,7 @@ Docker를 이용한 Nginx 웹서버 구축 및 배포
 - WSL2: Ubuntu 22.04
 - Docker: 설치 완료
 - Git: 설정 완료
++ 경로: /home/binary68/E1-workroom
 
 ## 📁 프로젝트 구조
 mywebsite/
@@ -108,6 +125,7 @@ Ctrl + R
 
 🐳 Docker 명령어
 이미지 빌드
+docker build -t mywebsite .
 
 컨테이너 실행
 docker run -p 8080:80 mywebsite
@@ -149,12 +167,13 @@ git pull origin main
 ✅ 파일 권한 (r/w/x) 학습
 ✅ 권한 숫자 표시 (755, 644) 학습
 ✅ 터미널 로그 기록 학습
+✅ 파일 권한 설정 완료
+   - 디렉토리: chmod 755
+   - 파일: chmod 644
 진행 중인 항목
 🔄 README.md 작성
-🔄 파일 권한 설정 및 확인
 🎯 다음 단계
 README.md 작성 완료
-파일 권한 설정 확인
 Git 커밋 및 푸시
 집 PC에서 동기화
 📞 참고사항
@@ -164,5 +183,5 @@ Docker 이미지 이름: mywebsite
 GitHub 저장소: E1-workroom (또는 mywebsite)
 프로젝트 경로: /home/binary67/projects/mywebsite
 
-작성일 : 2026년 11월 06일
+작성일 : 2025년 11월 07일
 
