@@ -164,32 +164,24 @@ history | grep docker      # docker 관련 검색
 history | grep git         # git 관련 검색
 !!                         # 마지막 명령어 재실행
 Ctrl + R                   # 역방향 검색
+
 📚 학습 내용
-✅ 완료한 항목
-WSL2 + Ubuntu 설치
-Docker 설치 및 설정
-Nginx 웹서버 Dockerfile 작성
-HTML 파일 작성 (한글 지원)
-Docker 이미지 빌드 및 컨테이너 실행
-GitHub 저장소 생성 및 동기화
-VS Code 설정
-Git 사용자 정보 설정
-SSH 키 생성 및 설정
-절대 경로 vs 상대 경로 학습
-파일 권한 (r/w/x) 학습
-권한 숫자 표시 (755, 644) 학습
-터미널 로그 기록 학습
-파일 권한 설정 완료
-바인드마운트(Bind Mount) 개념 학습
-바인드마운트 실습 폴더 및 HTML 파일 생성
-바인드마운트 컨테이너 실행 및 브라우저 확인
-데이터 영속성 검증 완료
-교육장 PC 환경 설정 및 실습 완료
-README.md 업데이트
-🎯 다음 단계
-Docker Volume 실습
-Docker Compose 학습
-집 PC에서 동기화 확인
+## 🎯 실습 완료 및 향후 계획
+### ✅ 완료한 항목
+- [x] Windows WSL2 및 Ubuntu 환경 구축
+- [x] Docker 설치 및 실행 확인
+- [x] nginx 웹서버 구축 및 접속 확인
+- [x] Docker 바인드 마운트 실습
+- [x] Docker Volume 데이터 영속성 실습
+- [x] Git 및 GitHub 연동
+- [x] 사무실 PC GitHub 동기화 확인
+- [x] 집 PC GitHub 동기화 확인
+- [x] 교육장 PC GitHub 동기화 확인
+
+### 📌 향후 학습 계획
+- [ ] Docker Compose 학습
+- [ ] Python을 활용한 웹 애플리케이션 개발
+
 📞 참고사항
 모든 명령어는 WSL2 Ubuntu 터미널에서 실행
 Docker 이미지 이름: mywebsite
@@ -216,3 +208,159 @@ git add README.md
 git commit -m "docs: 교육장 PC 환경 및 바인드마운트 실습 내용 추가"
 git push origin main
 
+```
+## 📸 미션 수행 증거 자료
+
+### 1. 현재 작업 경로 확인 (`pwd`)
+
+Ubuntu 터미널에서 `pwd` 명령어로
+현재 작업 경로를 확인했습니다.
+
+![현재 작업 경로 확인](screenshots/01-pwd.png)
+
+### 2. Linux 파일 목록 및 권한 확인
+
+`ls -l` 명령어로 파일 목록과 권한을 확인했습니다.
+
+![파일 목록 및 권한](screenshots/02-ls%20-l.png)
+
+### 3. Linux 파일 권한 변경
+
+`chmod 600 permission-test.txt` 명령어로 파일 권한을 변경하고 결과를 확인했습니다.
+
+![파일 권한 변경](screenshots/03-chmod.png)
+
+### 4. Docker 설치 버전 확인
+
+`docker --version` 명령어로 설치된 Docker 버전을 확인했습니다.
+
+![Docker 버전](screenshots/04-docker-version.png)
+
+### 5. Docker 엔진 정보 확인
+
+`docker info` 명령어로 Docker 엔진 정보를 확인했습니다.
+
+![Docker 정보](screenshots/05-docker-info.png)
+
+### 6. Docker 권한 오류 및 해결
+
+일반 사용자로 Docker를 실행할 때 `permission denied` 오류가 발생했습니다.
+
+![Docker 권한 오류](screenshots/07-docker-permission-error.png)
+
+`groups` 명령어로 사용자 그룹을 확인한 뒤, `sudo usermod -aG docker $USER` 명령어로 Docker 그룹에 사용자를 추가했습니다. 이후 `newgrp docker`로 새 그룹 권한을 적용했습니다.
+
+![Docker 그룹 추가](screenshots/08-docker-group-add.png)
+
+다시 `docker run hello-world`를 실행하여 정상 작동을 확인했습니다.
+
+![hello-world 성공](screenshots/09-hello-world-success.png)
+
+### 7. Docker 이미지 목록 확인
+
+`docker images` 명령어로 로컬 이미지 목록을 확인했습니다.
+
+![Docker 이미지 목록](screenshots/10-docker-images.png)
+
+### 8. Docker 컨테이너 목록 확인
+
+`docker ps -a` 명령어로 실행 중인 컨테이너와 종료된 컨테이너를 확인했습니다.
+
+![Docker 컨테이너 목록](screenshots/11-docker-ps-a.png)
+
+### 9. nginx 웹사이트 이미지 빌드
+
+`docker build -t mywebsite:1.0 .` 명령어로 웹사이트 이미지를 빌드했습니다.
+
+![Docker 이미지 빌드](screenshots/12-docker-build.png)
+
+### 10. 웹사이트 실행 및 접속 확인
+
+`docker run -d -p 8080:80 --name mywebsite-test mywebsite:1.0` 명령어로 웹서버를 실행하고, 브라우저에서 `http://localhost:8080` 접속을 확인했습니다.
+
+![웹사이트 접속 화면](screenshots/13-webserver-brower.png)
+
+### 11. Docker 로그 확인
+
+`docker logs mywebsite-test` 명령어로 웹서버 로그를 확인했습니다.
+
+![Docker 로그](screenshots/14-docker-logs.png)
+
+### 12. Docker 자원 사용량 확인
+
+`docker stats mywebsite-test` 명령어로 CPU와 메모리 사용량을 확인했습니다.
+
+![Docker 자원 사용량](screenshots/15-docker-stats.png)
+
+### 13. 바인드 마운트 실습
+
+Ubuntu의 `bind-test` 폴더를 nginx 컨테이너에 연결했습니다.
+
+변경 전 웹페이지:
+
+![바인드 마운트 변경 전](screenshots/16-bind-mount-before.png)
+
+Ubuntu의 `bind-test/index.html` 내용을 수정한 후, 컨테이너를 다시 실행하지 않고 브라우저를 새로고침하여 변경된 내용을 확인했습니다.
+
+![바인드 마운트 변경 후](screenshots/17-bind-mount-after.png)
+
+### 14. Docker 볼륨 데이터 보존 실습
+
+`docker volume create mydata` 명령어로 볼륨을 만들고, `/data/test.txt`에 데이터를 저장했습니다.
+
+**컨테이너 삭제 전 데이터 확인**
+
+![볼륨 데이터 삭제 전](screenshots/18-volume-data-before.png)
+
+**기존 컨테이너 삭제**
+
+`docker rm volume-test` 명령어로 컨테이너를 삭제했습니다.
+
+![컨테이너 삭제](screenshots/19-volume-container-delete.png)
+
+**컨테이너 삭제 후 데이터 확인**
+
+새 임시 컨테이너에서 같은 볼륨을 연결하여 `My important data`가 남아 있음을 확인했습니다.
+
+![볼륨 데이터 삭제 후](screenshots/20-volume-data-after.png)
+
+### 15. 실습 결과 정리
+
+- Docker 이미지 빌드 및 nginx 웹서버 실행 확인
+- Docker 접근 권한 오류 해결
+- 바인드 마운트의 파일 변경 반영 확인
+- Docker 볼륨의 컨테이너 삭제 후 데이터 유지 확인
+
+## 📚 실습을 통해 이해한 핵심 개념
+
+### 1. Docker 이미지와 컨테이너의 차이
+
+Docker 이미지는 프로그램 실행에 필요한 파일과 설정을 담은 설계도와 같습니다. 컨테이너는 그 이미지를 바탕으로 실제 실행되는 환경입니다.
+
+- `docker build`: Dockerfile을 이용해 이미지를 만듭니다.
+- `docker run`: 이미지를 이용해 컨테이너를 생성하고 실행합니다.
+- `docker ps -a`: 컨테이너 목록과 상태를 확인합니다.
+
+### 2. Docker 포트 연결
+
+`-p 8080:80`은 컴퓨터의 8080번 포트를 컨테이너의 80번 포트에 연결한다는 의미입니다.
+
+따라서 브라우저에서 `http://localhost:8080`에 접속하면 컨테이너 안의 nginx 웹서버에 연결됩니다.
+
+### 3. 바인드 마운트와 Docker 볼륨
+
+바인드 마운트는 컴퓨터의 특정 폴더를 컨테이너에 연결하는 방식입니다. 이번 실습에서는 `bind-test/index.html`을 수정하자 웹페이지에도 변경 내용이 반영되었습니다.
+
+Docker 볼륨은 Docker가 관리하는 데이터 저장 공간입니다. 이번 실습에서는 컨테이너를 삭제한 후에도 `mydata` 볼륨에 저장된 파일이 유지되는 것을 확인했습니다.
+
+### 4. Git과 GitHub의 차이
+
+Git은 파일의 변경 이력을 관리하는 도구이고, GitHub는 Git 저장소를 온라인에서 보관하고 공유하는 서비스입니다.
+
+이번 미션에서는 사무실, 집, 교육장 PC에서 GitHub 저장소를 이용해 프로젝트를 동기화했습니다.
+
+### 5. Linux 파일 권한
+
+`ls -l`은 파일의 권한을 확인하는 명령어이고, `chmod`는 파일의 권한을 변경하는 명령어입니다.
+
+`chmod 600 permission-test.txt`는 파일 소유자에게 읽기와 쓰기 권한을 주고, 그룹과 다른 사용자에게는 권한을 주지 않는 설정입니다.
